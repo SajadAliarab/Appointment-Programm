@@ -1,3 +1,5 @@
+import React, { useState } from 'react';
+
 import { BiSearch, BiCaretDown, BiCheck } from "react-icons/bi";
 const DropDown = () =>{
     return(
@@ -25,6 +27,7 @@ const DropDown = () =>{
     );
 }
 const Search = () => {
+    const [sortButton,setSortButton]=useState(false);
     return (
         <div className="py-5">
         <div className="mt-1 relative rounded-md shadow-sm">
@@ -37,10 +40,15 @@ const Search = () => {
           <div className="absolute inset-y-0 right-0 flex items-center">
             <div>
               <button type="button"
+              onClick={()=> setSortButton(!sortButton)}
                 className="justify-center px-4 py-2 bg-blue-400 border-2 border-blue-400 text-sm text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 flex items-center" id="options-menu" aria-haspopup="true" aria-expanded="true" >
                 Sort By <BiCaretDown className="ml-2" />
               </button>
-              <DropDown/>
+              {
+                sortButton &&
+                <DropDown/>
+              }
+              
             </div>
           </div>
         </div>

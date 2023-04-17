@@ -1,13 +1,19 @@
-import React from "react";
+import React,{useState} from "react";
 import { BiCalendarPlus } from "react-icons/bi";
 
 const AddAppiontment = () => {
+    const [toggleForm,setToggleForm]=useState(false);
     return (
         <div>
-            <button className="bg-blue-400 text-white px-2 py-3 w-full text-left rounded-t-md">
+            <button onClick={()=> {
+                setToggleForm(!toggleForm)
+            }}
+             className={`bg-blue-400 text-white px-2 py-3 w-full text-left  ${toggleForm ? `rounded-t-md` : `rounded-md`}`}>
                 <div><BiCalendarPlus className="inline-block align-text-top" />  Add Appointment</div>
             </button>
-            <div className="border-r-2 border-b-2 border-l-2 border-light-blue-500 rounded-b-md pl-4 pr-4 pb-4">
+            {
+                toggleForm &&
+                <div className="border-r-2 border-b-2 border-l-2 border-light-blue-500 rounded-b-md pl-4 pr-4 pb-4">
                 <div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start  sm:pt-5">
                     <label htmlFor="ownerName" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                         Owner Name
@@ -67,6 +73,8 @@ const AddAppiontment = () => {
                     </div>
                 </div>
             </div>
+            }
+           
         </div>
     );
 }
