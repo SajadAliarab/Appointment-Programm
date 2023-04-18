@@ -1,3 +1,4 @@
+import React from 'react';
 import {BiCalendar} from "react-icons/bi"
 import Search from "./components/Search";
 import AddAppiontment from "./components/AddApointment";
@@ -8,7 +9,7 @@ function App() {
      <h1 className="text-5xl">
       <BiCalendar className="inline-block text-red-400 align-top "/> Your Appointments</h1>
       <AddAppiontment/>
-      <Search/>
+      {/* <Search/> */}
       <AppointmnetList/>
     </div>
   );

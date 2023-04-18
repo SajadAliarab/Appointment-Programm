@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import { BiTrash } from "react-icons/bi";
 import appointmnetlist from "../data.json"
+import Search from './Search';
  const  AppointmnetList =  () => {
      const [appoin,SetApp]=useState([...appointmnetlist]);
-    // const DeleteAppoint = (e)=>{
-    //     console.log(e);
-    //   SetApp(app.filter(apps=>apps.id!=e.id))
-    //     console.log(app);
-    // }
+    const [query,setQuery]=useState("");
 
     return (
+        <div>
+            <Search query={query} queryonchange={myQuery=> setQuery(myQuery)}/>
         <ul className="divide-y divide-gray-200">
             {appoin.map(app => (
                     
@@ -32,6 +31,7 @@ import appointmnetlist from "../data.json"
                     </li>
                 ))}
         </ul>
+        </div>
     );
 }
 
