@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { BiTrash } from "react-icons/bi";
 import appointmnetlist from "../data.json"
 import Search from './Search';
+import AddAppiontment from './AddApointment';
  const  AppointmnetList =  () => {
     const [appoin,SetApp]=useState(...[appointmnetlist]);
     const [query,setQuery]=useState("");
@@ -24,6 +25,9 @@ import Search from './Search';
     
     return (
         <div>
+            <AddAppiontment 
+                onSendAppointment={myAppointmnet=>SetApp([...appoint,myAppointmnet])}
+            />
             <Search query={query} queryonchange={myQuery=> setQuery(myQuery)}
             orderBy={orderBy}
             onOrderByChanger={myorder=> setOrderBy(myorder)}
