@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { BiTrash } from "react-icons/bi";
 import appointmnetlist from "../data.json"
 import Search from './Search';
-import AddAppiontment from './AddApointment';
+import AddAppiontment from './AddApointment'; 
  const  AppointmnetList =  () => {
     const [appoin,SetApp]=useState(...[appointmnetlist]);
     const [query,setQuery]=useState("");
-    const [sortBy,setSortBy] = useState("petName")
-    const [orderBy,setOrderBy]= useState("asc")
+    const [sortBy,setSortBy] = useState("petName");
+    const [orderBy,setOrderBy]= useState("asc");
     const appoint = appoin.filter(
     item=>{
              return (
@@ -16,8 +16,10 @@ import AddAppiontment from './AddApointment';
                  item.aptNotes.toLowerCase().includes(query.toLowerCase()) 
                  );
          }
+       
 ).sort((a,b) => {
     let order = (orderBy==='asc') ? 1: -1;
+    
     return(
         a[sortBy].toLowerCase() < b[sortBy].toLowerCase() ? -1*order : 1*order
     )
