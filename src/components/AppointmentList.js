@@ -3,14 +3,34 @@ import { BiTrash } from "react-icons/bi";
 import appointmnetlist from "../data.json"
 import Search from './Search';
  const  AppointmnetList =  () => {
-     const [appoin,SetApp]=useState([...appointmnetlist]);
+    const [appoin,SetApp]=useState(...[appointmnetlist]);
     const [query,setQuery]=useState("");
-
+    const [sortBy,setSortBy] = useState("petName")
+    const [orderBy,setOrderBy]= useState("asc")
+    const appoint = appoin.filter(
+    item=>{
+             return (
+                 item.petName.toLowerCase().includes(query.toLowerCase()) ||
+                 item.ownerName.toLowerCase().includes(query.toLowerCase()) ||
+                 item.aptNotes.toLowerCase().includes(query.toLowerCase()) 
+                 );
+         }
+).sort((a,b) => {
+    let order = (orderBy==='asc') ? 1: -1;
+    return(
+        a[sortBy].toLowerCase() < b[sortBy].toLowerCase() ? -1*order : 1*order
+    )
+})
+    
     return (
         <div>
-            <Search query={query} queryonchange={myQuery=> setQuery(myQuery)}/>
+            <Search query={query} queryonchange={myQuery=> setQuery(myQuery)}
+            orderBy={orderBy}
+            onOrderByChanger={myorder=> setOrderBy(myorder)}
+            sortBy={sortBy}
+            onSortByChanger={mysort=> setSortBy(mysort)}/>
         <ul className="divide-y divide-gray-200">
-            {appoin.map(app => (
+            {appoint.map(app => (
                     
                     <li className="px-3 py-3 flex items-start">
                         <button type="button"

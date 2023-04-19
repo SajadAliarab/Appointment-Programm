@@ -1,24 +1,29 @@
 import React, { useState } from 'react';
 
 import { BiSearch, BiCaretDown, BiCheck } from "react-icons/bi";
-const DropDown = () =>{
+const DropDown = ({sortBy,orderBy,onOrderByChanger,onSortByChanger}) =>{
     return(
         <div className="origin-top-right absolute right-0 mt-2 w-56
       rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
       <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
         <div
+          onClick={()=> onSortByChanger('petName')}
           className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 flex justify-between cursor-pointer"
           role="menuitem">Pet Name <BiCheck /></div>
         <div
+        onClick={()=> onSortByChanger('ownerName')}
           className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 flex justify-between cursor-pointer"
           role="menuitem">Owner Name  <BiCheck /></div>
         <div
+        onClick={()=> onSortByChanger('aptDate')}
           className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 flex justify-between cursor-pointer"
           role="menuitem">Date <BiCheck /></div>
         <div
+        onClick={()=> onOrderByChanger('asc')}
           className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 flex justify-between cursor-pointer border-gray-1 border-t-2"
           role="menuitem">Asc <BiCheck /></div>
         <div
+        onClick={()=> onOrderByChanger('desc')}
           className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 flex justify-between cursor-pointer"
           role="menuitem">Desc <BiCheck /></div>
       </div>
@@ -26,7 +31,7 @@ const DropDown = () =>{
 
     );
 }
-const Search = ({query,queryonchange}) => {
+const Search = ({query,queryonchange,sortBy,onSortByChanger,orderBy,onOrderByChanger}) => {
     const [sortButton,setSortButton]=useState(false);
     return (
         <div className="py-5">
@@ -48,7 +53,12 @@ const Search = ({query,queryonchange}) => {
               </button>
               {
                 sortButton &&
-                <DropDown/>
+                <DropDown 
+                orderBy={orderBy}
+                onOrderByChanger={myorder=> onOrderByChanger(myorder)}
+                sortBy={sortBy}
+                onSortByChanger={mysort=> onSortByChanger(mysort)}
+                />
               }
               
             </div>
